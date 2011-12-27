@@ -1,13 +1,12 @@
 Name:           sqlmap
 Version:        0.9
-Release:        %mkrel 1
+Release:        2
 Summary:        Automatic SQL injection and database takeover tool
 Group:          Monitoring
 License:        GPL
 URL:            http://sqlmap.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/sqlmap/sqlmap-%{version}.tar.gz
-BuildArch:		noarch
-BuildRoot:      %{_tmppath}/%{name}-%{version}
+BuildArch:	noarch
 
 %description
 sqlmap is an open source penetration testing tool that automates the process of
@@ -21,6 +20,13 @@ out-of-band connections.
 %prep
 %setup -q -n sqlmap
 find . -name .svn | xargs rm -rf
+# Drop shebang from non-executable python files
+find . -type f -and -name '*.py' -and ! -executable -exec  sed -i "sa#!/usr/bin/env pythonaa" {} \;
+# Dro non-Linux stuff
+rm -rf lib/contrib/upx/macosx
+rm -rf lib/contrib/upx/windows
+rm -rf udf/mysql/windows
+rm -rf udf/postgresql/windows
 
 %install
 rm -rf %{buildroot}
@@ -38,8 +44,8 @@ cp -pr xml %{buildroot}%{_datadir}/%{name}
 install -d -m 755 %{buildroot}%{_bindir}
 cat > %{buildroot}%{_bindir}/sqlmap <<EOF
 #!/bin/sh
-chdir %{_datadir}/%{name}
-exec ./sqlmap.py
+cd %{_datadir}/%{name}
+exec ./sqlmap.py \$@
 EOF
 chmod +x %{buildroot}%{_bindir}/sqlmap
 
