@@ -65,3 +65,14 @@ rm -rf %{buildroot}
 %{_bindir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 
+
+
+%changelog
+* Tue Dec 27 2011 Denis Silakov <dsilakov@mandriva.org> 0.9-2
++ Revision: 745518
+- drop non-linux files, fix launcher
+
+* Thu Jul 07 2011 Guillaume Rousse <guillomovitch@mandriva.org> 0.9-1
++ Revision: 689092
+- import sqlmap
+
