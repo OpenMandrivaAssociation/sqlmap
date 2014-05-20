@@ -1,6 +1,6 @@
 Name:           sqlmap
 Version:        0.9
-Release:        3
+Release:        4
 Summary:        Automatic SQL injection and database takeover tool
 Group:          Monitoring
 License:        GPL
@@ -26,6 +26,16 @@ rm -rf lib/contrib/upx/macosx
 rm -rf lib/contrib/upx/windows
 rm -rf udf/mysql/windows
 rm -rf udf/postgresql/windows
+rm -rf extra/udfhack/windows
+%ifarch x86_64
+rm -rf udf/mysql/linux/32
+rm -rf udf/postgresql/linux/32
+rm -rf extra/udfhack/linux/32
+%else
+rm -rf udf/mysql/linux/64
+rm -rf udf/postgresql/linux/64
+rm -rf extra/udfhack/linux/64
+%endif
 
 %install
 install -d -m 755 %{buildroot}%{_datadir}/%{name}
