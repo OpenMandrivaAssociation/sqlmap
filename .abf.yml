@@ -1,2 +1,4 @@
+removed_sources:
+  sqlmap-0.9.tar.gz: bea4b2bc2ad23cdd444fa7842becdee974ac3fb7
 sources:
-  "sqlmap-0.9.tar.gz": bea4b2bc2ad23cdd444fa7842becdee974ac3fb7
+  sqlmap-1.2.12.tar.gz: 0fcd2efa26d34d7a2ff4921ed16779f1c64d6161
